@@ -40,7 +40,7 @@
                     }); 
 	        iniconfig = super.iniconfig.overridePythonAttrs
 	          ( old: {
-                      buildInputs = (old.buildInputs or [ ]) ++ [ super.hatchling ];
+                      buildInputs = (old.buildInputs or [ ]) ++ [ super.hatchling super.hatch-vcs ];
                     }); 
 	        kraken-common = super.kraken-common.overridePythonAttrs
 	          ( old: {
