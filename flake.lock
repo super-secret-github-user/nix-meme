@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "krakenw": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1674573407,
+        "narHash": "sha256-qj84TjrhFaGjwTqawYzSjrJgmw8fWZka922vNBt9GiA=",
+        "owner": "helsing-ai",
+        "repo": "kraken-wrapper",
+        "rev": "ef2d1ea291ae9aba9adee640d71f37026d3a9cbd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "helsing-ai",
+        "repo": "kraken-wrapper",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1674459583,
+        "narHash": "sha256-L0UZl/u2H3HGsrhN+by42c5kNYeKtdmJiPzIRvEVeiM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "1b1f50645af2a70dc93eae18bfd88d330bfbcf7f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1674569733,
+        "narHash": "sha256-JDuZlwRYVxGEdWg1BRbmitFOQkheOdClW92kmQHemP4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "76f22c87700ddb8f722fbfc26c6c23e6a16fad4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "poetry2nix": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1674537260,
+        "narHash": "sha256-DTki81bWzHHRka0ZLayYS5La3t+npRVZvfDH8mx/Las=",
+        "owner": "nix-community",
+        "repo": "poetry2nix",
+        "rev": "a20e27e0555621d35de171270cd041631fc7cb23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "poetry2nix",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "krakenw": "krakenw",
+        "nixpkgs": "nixpkgs",
+        "poetry2nix": "poetry2nix",
+        "slap-cli": "slap-cli"
+      }
+    },
+    "slap-cli": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1674573345,
+        "narHash": "sha256-LV2AZcG8Yyc4fJBuGBQyMapcya49rNvqSxpRUgxpmVg=",
+        "owner": "super-secret-github-user",
+        "repo": "slap",
+        "rev": "f49816973428952d53f82c81352eb8ab8981c1fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "super-secret-github-user",
+        "repo": "slap",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
