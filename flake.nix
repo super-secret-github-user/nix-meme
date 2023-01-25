@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    nr-utils = {
+      url = "github:super-secret-github-user/python-nr.util";
+      flake = false;
+    };
     slap-cli = {
       url = "github:super-secret-github-user/slap";
       flake = false;
@@ -14,7 +18,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, poetry2nix, slap-cli, krakenw, flake-utils }:
+  outputs = { self, nixpkgs, poetry2nix, slap-cli, krakenw, nr-utils, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system: 
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -89,14 +93,19 @@
             projectDir = slap-cli.outPath;
             overrides = pkgs.poetry2nix.defaultPoetryOverrides.extend my_overrides;
           });
+          # nr-utils = (pkgs.poetry2nix.mkPoetryApplication {
+          #   projectDir = nr-utils.outPath;
+          #   overrides = pkgs.poetry2nix.defaultPoetryOverrides.extend my_overrides;
+          # });
         };
         
         devShells.default = pkgs.mkShell {
           name = "Helsing tooling";
 
           buildInputs = [
-	    packages.krakenw 
-	    packages.slap
+            # (pkgs.python310.withPackages (p: [packages.nr-utils]))
+	        packages.krakenw
+	        packages.slap
           ];
         };
       }
