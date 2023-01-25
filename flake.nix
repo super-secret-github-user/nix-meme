@@ -82,6 +82,10 @@
     	    ( old: {
                     buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
                   });
+    	  pathspec = super.pathspec.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.flit-core ];
+                  });
         });
       in
       rec {

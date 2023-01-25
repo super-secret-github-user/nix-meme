@@ -33,11 +33,11 @@
     "krakenw": {
       "flake": false,
       "locked": {
-        "lastModified": 1674573407,
-        "narHash": "sha256-qj84TjrhFaGjwTqawYzSjrJgmw8fWZka922vNBt9GiA=",
+        "lastModified": 1674664243,
+        "narHash": "sha256-bqNy2DMsjiJq3FfS0/QSvVDr9r084de3B+7jnboCN4I=",
         "owner": "helsing-ai",
         "repo": "kraken-wrapper",
-        "rev": "ef2d1ea291ae9aba9adee640d71f37026d3a9cbd",
+        "rev": "5d41216e460abed095071592d5c17573ed4de46a",
         "type": "github"
       },
       "original": {
@@ -62,25 +62,28 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nr-utils": {
+      "flake": false,
       "locked": {
-        "lastModified": 1674580929,
-        "narHash": "sha256-pPdroeTjsNqjAjv+3iPoaSK8O7OC9Slb0OlCNxA8Zfk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "bdf53b62578d5ef385f6bf0be59f42d1212c509a",
+        "lastModified": 1674655353,
+        "narHash": "sha256-suUID6DpAV219BZtTzSA9cz0VwjYdgbyOZvJ42tTq8E=",
+        "owner": "super-secret-github-user",
+        "repo": "python-nr.util",
+        "rev": "3cf3c3e0871069a80183ef0d75c7b2ab85a88977",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
+        "owner": "super-secret-github-user",
+        "repo": "python-nr.util",
         "type": "github"
       }
     },
     "poetry2nix": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1674537260,
@@ -91,8 +94,9 @@
         "type": "github"
       },
       "original": {
-        "id": "poetry2nix",
-        "type": "indirect"
+        "owner": "nix-community",
+        "repo": "poetry2nix",
+        "type": "github"
       }
     },
     "root": {
@@ -100,6 +104,7 @@
         "flake-utils": "flake-utils",
         "krakenw": "krakenw",
         "nixpkgs": "nixpkgs",
+        "nr-utils": "nr-utils",
         "poetry2nix": "poetry2nix",
         "slap-cli": "slap-cli"
       }
@@ -107,11 +112,11 @@
     "slap-cli": {
       "flake": false,
       "locked": {
-        "lastModified": 1674573345,
-        "narHash": "sha256-LV2AZcG8Yyc4fJBuGBQyMapcya49rNvqSxpRUgxpmVg=",
+        "lastModified": 1674664333,
+        "narHash": "sha256-zMLW/WTFCg1ubDqofTyAXOxn34/AB8ce+gkErTd4HZU=",
         "owner": "super-secret-github-user",
         "repo": "slap",
-        "rev": "f49816973428952d53f82c81352eb8ab8981c1fa",
+        "rev": "a1ff0d03b8ae1c728dee41a635b0a34a7337a4ac",
         "type": "github"
       },
       "original": {
