@@ -46,7 +46,7 @@
               }); 
 	  nr-util = super.nr-util.overridePythonAttrs
 	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
               }); 
 	  nr-python-environment = super.nr-python-environment.overridePythonAttrs
 	    ( old: {
@@ -79,19 +79,24 @@
               }); 
         });
       in
-      {
-        devShells.default =  pkgs.mkShell {
-          name = "kraken-wrapper";
-          buildInputs = [
-            (pkgs.poetry2nix.mkPoetryApplication {
-              projectDir = krakenw.outPath;
-	      overrides = pkgs.poetry2nix.defaultPoetryOverrides.extend my_overrides;
-            })
+      rec {
+        packages = flake-utils.lib.flattenTree {
+          krakenw = (pkgs.poetry2nix.mkPoetryApplication {
+            projectDir = krakenw.outPath;
+            overrides = pkgs.poetry2nix.defaultPoetryOverrides.extend my_overrides;
+          });
+          slap = (pkgs.poetry2nix.mkPoetryApplication {
+            projectDir = slap-cli.outPath;
+            overrides = pkgs.poetry2nix.defaultPoetryOverrides.extend my_overrides;
+          });
+        };
+        
+        devShells.default = pkgs.mkShell {
+          name = "Helsing tooling";
 
-            (pkgs.poetry2nix.mkPoetryApplication {
-              projectDir = slap-cli.outPath;
-	      overrides = pkgs.poetry2nix.defaultPoetryOverrides.extend my_overrides;
-            })
+          buildInputs = [
+	    packages.krakenw 
+	    packages.slap
           ];
         };
       }
