@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    poetry2nix = {
+      url = "github:nix-community/poetry2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nr-utils = {
       url = "github:super-secret-github-user/python-nr.util";
       flake = false;
@@ -22,80 +26,77 @@
     flake-utils.lib.eachDefaultSystem (system: 
       let
         pkgs = nixpkgs.legacyPackages.${system};
-	my_overrides = ( self: super: {
-	# needed for slap
-	  types-pygments = super.types-pygments.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
-              }); 
-	  types-beautifulsoup4 = super.types-beautifulsoup4.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
-              }); 
-	  databind = super.databind.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
-              }); 
-	  databind-json = super.databind-json.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
-              }); 
-	  databind-core = super.databind-core.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
-              }); 
-	  typeapi = super.typeapi.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
-              }); 
-	  nr-util = super.nr-util.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
-              }); 
-	  nr-python-environment = super.nr-python-environment.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
-              }); 
-	  pygments = super.pygments.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
-              }); 
-	# needed for kw
-	  nr-io-lexer = super.nr-io-lexer.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
-              }); 
-	  types-termcolor = super.types-termcolor.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
-              }); 
-	  builddsl = super.builddsl.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
-              }); 
-	  iniconfig = super.iniconfig.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.hatchling super.hatch-vcs ];
-              }); 
-	  kraken-common = super.kraken-common.overridePythonAttrs
-	    ( old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
-              }); 
+        inherit (poetry2nix.legacyPackages.${system}) mkPoetryApplication defaultPoetryOverrides;
+    	my_overrides = ( self: super: {
+    	# needed for slap
+    	  types-pygments = super.types-pygments.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
+                  });
+    	  types-beautifulsoup4 = super.types-beautifulsoup4.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
+                  });
+    	  databind = super.databind.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                  });
+    	  databind-json = super.databind-json.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                  });
+    	  databind-core = super.databind-core.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                  });
+    	  typeapi = super.typeapi.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                  });
+    	  nr-util = super.nr-util.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
+                  });
+    	  nr-python-environment = super.nr-python-environment.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                  });
+    	  pygments = super.pygments.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                  });
+    	# needed for kw
+    	  nr-io-lexer = super.nr-io-lexer.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                  });
+    	  types-termcolor = super.types-termcolor.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
+                  });
+    	  builddsl = super.builddsl.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                  });
+    	  kraken-common = super.kraken-common.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                  });
         });
       in
       rec {
         packages = flake-utils.lib.flattenTree {
-          krakenw = (pkgs.poetry2nix.mkPoetryApplication {
+          krakenw = (mkPoetryApplication {
             projectDir = krakenw.outPath;
-            overrides = pkgs.poetry2nix.defaultPoetryOverrides.extend my_overrides;
+            overrides = defaultPoetryOverrides.extend my_overrides;
           });
-          slap = (pkgs.poetry2nix.mkPoetryApplication {
+          slap = (mkPoetryApplication {
             projectDir = slap-cli.outPath;
-            overrides = pkgs.poetry2nix.defaultPoetryOverrides.extend my_overrides;
+            overrides = defaultPoetryOverrides.extend my_overrides;
           });
-          # nr-utils = (pkgs.poetry2nix.mkPoetryApplication {
+          # nr-utils = (mkPoetryApplication {
           #   projectDir = nr-utils.outPath;
-          #   overrides = pkgs.poetry2nix.defaultPoetryOverrides.extend my_overrides;
+          #   overrides = defaultPoetryOverrides.extend my_overrides;
           # });
         };
         
