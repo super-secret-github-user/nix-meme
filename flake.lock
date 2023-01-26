@@ -65,11 +65,11 @@
     "nr-utils": {
       "flake": false,
       "locked": {
-        "lastModified": 1674655353,
-        "narHash": "sha256-suUID6DpAV219BZtTzSA9cz0VwjYdgbyOZvJ42tTq8E=",
+        "lastModified": 1674738265,
+        "narHash": "sha256-uS1dkEyj73om2ucyB5XYFu98Mvl1XPDVd2zbGrTn39Y=",
         "owner": "super-secret-github-user",
         "repo": "python-nr.util",
-        "rev": "3cf3c3e0871069a80183ef0d75c7b2ab85a88977",
+        "rev": "1a4421b5ffcfdb974f56affc8a9d663746e6aebe",
         "type": "github"
       },
       "original": {
@@ -86,11 +86,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1674537260,
-        "narHash": "sha256-DTki81bWzHHRka0ZLayYS5La3t+npRVZvfDH8mx/Las=",
+        "lastModified": 1674727911,
+        "narHash": "sha256-5yIiStrXn/YQbuPY24a0H9ZcjuLRMCRGEmImJRr7Ons=",
         "owner": "nix-community",
         "repo": "poetry2nix",
-        "rev": "a20e27e0555621d35de171270cd041631fc7cb23",
+        "rev": "ea63bd8d4ae6d609cb5cf385e78019213792aa33",
         "type": "github"
       },
       "original": {
@@ -112,11 +112,11 @@
     "slap-cli": {
       "flake": false,
       "locked": {
-        "lastModified": 1674664333,
-        "narHash": "sha256-zMLW/WTFCg1ubDqofTyAXOxn34/AB8ce+gkErTd4HZU=",
+        "lastModified": 1674739686,
+        "narHash": "sha256-aaERl5r1stZODvOYWUgb81ciFgYV7KByPJJu86g3qbc=",
         "owner": "super-secret-github-user",
         "repo": "slap",
-        "rev": "a1ff0d03b8ae1c728dee41a635b0a34a7337a4ac",
+        "rev": "4bcf4049678251ae0956fba736883884ea1b649a",
         "type": "github"
       },
       "original": {

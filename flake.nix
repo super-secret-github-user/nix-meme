@@ -37,25 +37,53 @@
     	    ( old: {
                     buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
                   });
+    	  databind2 = super.databind2.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
+                  });
     	  databind = super.databind.overridePythonAttrs
     	    ( old: {
-                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
                   });
     	  databind-json = super.databind-json.overridePythonAttrs
     	    ( old: {
-                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
+                  });
+    	  databind-json2 = super.databind-json2.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
                   });
     	  databind-core = super.databind-core.overridePythonAttrs
     	    ( old: {
-                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
+                  });
+    	  databind-core2 = super.databind-core2.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
                   });
     	  typeapi = super.typeapi.overridePythonAttrs
     	    ( old: {
                     buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry ];
                   });
+    	  typing = super.typing.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools super.setuptools-scm super.poetry-core super.flit-core super.poetry-dynamic-versioning ];
+                  });
+    	  nr-date = super.nr-date.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry-core ];
+                  });
+    	  nr-stream = super.nr-stream.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry-core ];
+                  });
     	  nr-util = super.nr-util.overridePythonAttrs
     	    ( old: {
-                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry super.setuptools-scm ];
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry-core ];
+                  });
+    	  nr-util2 = super.nr-util2.overridePythonAttrs
+    	    ( old: {
+                    buildInputs = (old.buildInputs or [ ]) ++ [ super.poetry-core ];
                   });
     	  nr-python-environment = super.nr-python-environment.overridePythonAttrs
     	    ( old: {
@@ -98,17 +126,12 @@
             projectDir = slap-cli.outPath;
             overrides = defaultPoetryOverrides.extend my_overrides;
           });
-          # nr-utils = (mkPoetryApplication {
-          #   projectDir = nr-utils.outPath;
-          #   overrides = defaultPoetryOverrides.extend my_overrides;
-          # });
         };
         
         devShells.default = pkgs.mkShell {
           name = "Helsing tooling";
 
           buildInputs = [
-            # (pkgs.python310.withPackages (p: [packages.nr-utils]))
 	        packages.krakenw
 	        packages.slap
           ];
